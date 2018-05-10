@@ -1,0 +1,14 @@
+<h1>Countries</h1>
+<ng2-smart-table #table 
+    [settings]="settings" 
+    [source]="source" 
+    (rowSelect)="rowSelectedOnClick($event)"
+    (deleteConfirm)="onDeleteConfirm($event)"
+    (editConfirm)="onSaveConfirm($event)"
+    (createConfirm)="onCreateConfirm($event)">
+</ng2-smart-table>
+
+<button class="btn btn-primary" (click)="setNextCountry()">Next country</button>
+<button class="btn btn-primary" (click)="setPrevCountry()">Previous country</button>
+<button class="btn btn-primary" *ngIf="!zoom" (click)="getCities()">Get Cities for selected</button>
+<button class="btn btn-primary" *ngIf="zoom" (click)="setZoom()">Get Cities for selected</button>

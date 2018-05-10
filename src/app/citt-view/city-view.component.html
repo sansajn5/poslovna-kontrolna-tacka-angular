@@ -1,0 +1,28 @@
+<h1> All Cities {{text}}</h1>
+<ng2-smart-table #table 
+    [settings]="settings" 
+    [source]="source"
+    (rowSelect)="rowSelectedOnClick($event)"
+    (deleteConfirm)="onDeleteConfirm($event)"
+    (editConfirm)="onSaveConfirm($event)"
+    (createConfirm)="onCreateConfirm($event)">
+</ng2-smart-table>
+<button class="btn btn-primary" (click)="setNextCity()">Next city</button>
+<button class="btn btn-primary" (click)="setPrevCity()">Previous city</button>
+<button class="btn btn-primary" *ngIf="!show" (click)="addCity()">Add city</button>
+<button class="btn btn-primary" *ngIf="show" (click)="cancelCity()">Cancel adding city</button>
+<button class="btn btn-primary" *ngIf="selectedRow != -1 && !show" (click)="editCity()">Edit city</button>
+<button class="btn btn-primary" *ngIf="selectedRow != -1 && show" (click)="cancelEditCity()">Cancel Edit city</button>
+
+<div [ngClass]="{'op' : !show}" class="col-md-12">
+    <div class="form-group">
+        <input class="form-control" type="text" placeholder="City name" [formControl]="name">
+        <input class="form-control" type="text" placeholder="City postal code" [formControl]="postalCode">
+        <select [formControl]="country">
+            <option *ngFor="let item of comboItems">{{item.mark}}</option>
+        </select>
+        <button class="btn btn-primary" (click)="confirmCity()">Confirm adding city</button>
+        <button class="btn btn-primary" *ngIf="edit" (click)="editConfirum()">Confirm editing city</button>
+        <button class="btn btn-primary" (click)="zoom()">Zoom combo</button>
+    </div>
+</div>
